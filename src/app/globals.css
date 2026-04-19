@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Roboto Mono, monospace;
+  
+  --color-brand: #6366f1; /* Indigo-500 */
+  --color-brand-primary: #6366f1; /* Indigo-500 */
+  --color-brand-secondary: #4f46e5; /* Indigo-600 */
+  --color-brand-accent: #818cf8; /* Indigo-400 */
+  
+  --color-background: #030712; /* Slate-950 */
+  --color-foreground: #f8fafc; /* Slate-50 */
+  
+  --color-card: #0f172a; /* Slate-900 */
+  --color-border: #1e293b; /* Slate-800 */
+}
+
+:root {
+  --background: #030712;
+  --foreground: #f8fafc;
+  --brand: #6366f1;
+}
+
+::selection {
+  background-color: rgba(99, 102, 241, 0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+  
+  .glass-card {
+    @apply bg-white/[0.02] backdrop-blur-sm border border-white/[0.05] hover:bg-white/[0.05] transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-accent via-white to-brand-primary;
+  }
+
+  .animate-glow {
+    animation: glow 4s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: 0.5; filter: blur(20px); }
+    50% { opacity: 1; filter: blur(40px); }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
