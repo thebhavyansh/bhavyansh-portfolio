@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 import { personalData } from "@/lib/data";
 import { ArrowDownRight, Sparkles } from "lucide-react";
 
 export function Hero() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -17,16 +17,26 @@ export function Hero() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: easeOut,
+      },
+    },
   };
 
   return (
-    <section id="home" className="relative flex flex-col items-center justify-center min-h-screen pt-20 overflow-hidden">
+    <section
+      id="home"
+      className="relative flex flex-col items-center justify-center min-h-screen pt-20 overflow-hidden"
+    >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/20 rounded-full blur-[120px] animate-pulse pointer-events-none" />
-      
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -45,7 +55,10 @@ export function Hero() {
           variants={itemVariants}
           className="text-5xl md:text-8xl font-bold tracking-tight mb-6"
         >
-          Hi, I'm <span className="text-gradient">{personalData.name.split(" ")[0]}</span>
+          Hi, I'm{" "}
+          <span className="text-gradient">
+            {personalData.name.split(" ")[0]}
+          </span>
         </motion.h1>
 
         <motion.p
@@ -65,9 +78,11 @@ export function Hero() {
           >
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             <span className="relative flex items-center gap-2">
-              View My Work <ArrowDownRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              View My Work{" "}
+              <ArrowDownRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </span>
           </a>
+
           <a
             href="#experience"
             className="px-8 py-4 bg-white/5 hover:bg-white/10 transition-colors border border-white/10 rounded-full font-semibold backdrop-blur-sm"
@@ -79,7 +94,9 @@ export function Hero() {
 
       {/* Decorative Elements */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 animate-bounce">
-        <span className="text-xs uppercase tracking-widest font-semibold">Scroll</span>
+        <span className="text-xs uppercase tracking-widest font-semibold">
+          Scroll
+        </span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-brand to-transparent" />
       </div>
     </section>
